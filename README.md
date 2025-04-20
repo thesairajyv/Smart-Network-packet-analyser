@@ -95,6 +95,47 @@ The analyzer provides:
 - IP fragmentation
 - ICMP errors
 
+## V2 Update (April 2025)
+
+- **AI-Powered Stream Analysis:** Each stream in the report now includes an LLM (Gemini) AI analysis section, even if no errors are detected, providing traffic insights and protocol summaries.
+- **Automatic Output Naming:** Output report files are now named using the PCAP file's prefix (e.g., `capture_analysis.txt` for `capture.pcap`).
+- **Improved Gemini Model Support:** Now uses the latest supported Gemini model (`gemini-1.5-pro-latest`) for compatibility and better results.
+- **Bug Fixes:** Fixed event loop, model selection, and async/sync issues for robust operation on macOS and other platforms.
+
+## Quick Start (How to Run)
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yourusername/packet-analyzer.git
+   cd packet-analyzer
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Set your Gemini API key:**
+   - Get your API key from Google AI Studio or your Gemini developer console.
+   - Export it in your terminal:
+     ```bash
+     export GEMINI_API_KEY="your-gemini-api-key"
+     ```
+
+4. **Run the analyzer on a PCAP file:**
+   ```bash
+   python3 analyze_pcap.py /path/to/your/capture.pcap
+   ```
+   - The output report will be saved as `capture_analysis.txt` in the current directory.
+
+5. **View the report:**
+   - Open the generated `*_analysis.txt` file to see stream-by-stream analysis and AI insights.
+
+## Notes
+- If you hit Gemini API rate limits, the tool will automatically wait and resume.
+- For best results, use Python 3.8+ and ensure your `google-generativeai` package is up to date.
+- For troubleshooting, check the terminal output for warnings or errors.
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit pull requests.
