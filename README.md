@@ -20,9 +20,13 @@ A comprehensive Python tool for analyzing PCAP files to identify network issues,
 
 ## Requirements
 
-- Python 3.x
+- Python 3.8+
 - pyshark
-- tcpdump or Wireshark (for PCAP format conversion)
+- nest_asyncio
+- google-generativeai
+- scapy
+- Wireshark/tshark (system dependency, required for pyshark)
+- tcpdump (system dependency, for PCAP conversion)
 
 ## Installation
 
@@ -32,10 +36,20 @@ A comprehensive Python tool for analyzing PCAP files to identify network issues,
    cd packet-analyzer
    ```
 
-2. Install dependencies:
+2. Install Python dependencies:
    ```bash
    pip install -r requirements.txt
    ```
+
+3. Install system dependencies (required for pyshark and PCAP conversion):
+   - On macOS:
+     ```bash
+     brew install wireshark tcpdump
+     ```
+   - On Ubuntu/Debian:
+     ```bash
+     sudo apt-get install wireshark tcpdump
+     ```
 
 ## Usage
 
@@ -130,6 +144,12 @@ The analyzer provides:
 
 5. **View the report:**
    - Open the generated `*_analysis.txt` file to see stream-by-stream analysis and AI insights.
+
+## Troubleshooting
+
+- If you see errors about missing tshark or tcpdump, make sure you have installed the system dependencies as described above.
+- If you see ImportError for nest_asyncio, make sure you ran `pip install -r requirements.txt`.
+- For Gemini/LLM features, ensure you have set your `GEMINI_API_KEY` environment variable.
 
 ## Notes
 - If you hit Gemini API rate limits, the tool will automatically wait and resume.
